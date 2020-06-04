@@ -1,0 +1,96 @@
+<!-- Tabs -->
+<div class="container my-5">
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+            <a id="album-all" class="nav-link album-nav-item active" href="/albums">All Albums</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link album-nav-item" href="/albums?filter=genre">Genre</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link album-nav-item" href="/albums?filter=id">ID</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link album-nav-item" href="/albums?filter=artist">Artist</a>
+        </li>                
+    </ul>
+</div>
+
+
+<!-- Input search -->
+<div id="album-search" class="container my-5 d-none">
+    <div class="row justify-content-center">
+        <div class="col-6 text-center">
+            <label class="mb-0 ml-2" for="search-album">Search your favorite Album</label>
+            <div class="md-form input-group mt-0 mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text md-addon" id="material-addon3"></span>
+                </div>
+                <input id="search-album" type="text" class="form-control" aria-describedby="material-addon3">
+                <button id="btn-search-album" type="submit" class="btn btn-outline-secondary btn-sm text-light"> <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Container (DISCOGRAPHY Section) -->
+<div id="discography">
+    <div class="container">
+        <h2 class="text-center display-3 title my-5">The Albums List</h2>
+        <div class="row text-center">
+
+            {{#unless albums}}
+                <div class="text-center p-5 my-5 w-100">
+                    <p class="text-center text-dark display-3 title my-5" style="font-size: 2rem;">
+                        
+                        <i class="fas fa-headphones mx-2"></i>                        
+                        Sorry, try another search                                                
+                        <i class="fas fa-headphones mx-2"></i>
+                    </p>
+                </div>
+            {{/unless}}
+            {{#each albums}}
+
+            <a href="/albums/{{this.id}}">
+                <div class="col-sm-4">
+
+                    <div class="card my-3">
+
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img class="card-img-top" src="https://picsum.photos/35{{@index}}/35{{@index}}/?random"
+                                alt="Card image cap" style="max-width: 350px;">
+                            <a href="/albums/{{this.id}}">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <p>
+                                <strong>ID:</strong> {{this.id}}
+                            </p>
+                            <p>
+                                <strong>Title:</strong> {{this.title}}
+                            </p>
+                            <p>
+                                <strong>Artist:</strong> {{this.artist}}
+                            </p>
+                            <p>
+                                <strong>Genre:</strong> {{this.genre}}
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+
+            {{/each}}
+
+        </div>
+    </div>
+
+</div>
+</div>
